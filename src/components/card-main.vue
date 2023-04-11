@@ -1,7 +1,5 @@
 <template>
-  <div>
-
-  </div>
+    <router-view> </router-view>
 </template>
 
 <script>
@@ -9,7 +7,3 @@ export default {
   name: "card-main"
 }
 </script>
-
-<style scoped>
-
-</style>
