@@ -1,5 +1,5 @@
 <template>
-  <cardAppearanceClassicHome :card="card" :socials="socials"></cardAppearanceClassicHome>
+  <cardAppearanceClassicHome :portfolioList="portfolioList" :card="card" :socials="socials"></cardAppearanceClassicHome>
 </template>
 
 <script>
@@ -15,13 +15,14 @@ export default {
       API_DOMAIN: API_DOMAIN,
       card: {},
       socials: {},
+      portfolioList: null
     }
   },
   components: {
     cardAppearanceClassicHome
   },
   methods: {
-    ...mapActions(["GET_CARD_FROM_API"]),
+    ...mapActions(["GET_CARD_FROM_API", "GET_PORTFOLIO_FROM_API"]),
 
     // добавляем социалки которые не none
     setSocials(socials) {
@@ -42,7 +43,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["CARD"]),
+    ...mapGetters(["CARD", "PORTFOLIO"]),
   },
   created() {
 
@@ -52,6 +53,10 @@ export default {
       this.card = this.CARD[0];
 
       this.setSocials(this.card.id_social);
+
+      this.GET_PORTFOLIO_FROM_API(this.card.id).then(() => {
+        this.portfolioList = this.PORTFOLIO;
+      });
       
     });
   },

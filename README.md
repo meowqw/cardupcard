@@ -1,24 +1,12 @@
-# cardupcard
+# cardupcard Card
 
-## Project setup
-```
-npm install
-```
+## v0.1
+- Роутинг 
+- Оснонные компоненты
+- Верстка в компонентах
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## v0.2
+- Добавлена Классическая страница
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## v0.3
+- Небольшие правки в логике

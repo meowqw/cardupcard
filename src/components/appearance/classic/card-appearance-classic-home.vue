@@ -133,15 +133,15 @@
                   </ul>
                   <div class="home__btns home-btns">
                     <ul class="list-reset home-btns__list">
-                      <li class="home-btns__item">
+                      <!-- <li class="home-btns__item">
                         <button
                           class="btn-reset btn btn--classic home-btns__btn fz-14 fw-400 lh-140 color-dark ff-raleway"
                         >
                           <i class="fa-regular fa-calendar-days"></i>
                           <span>Сеансы</span>
                         </button>
-                      </li>
-                      <li class="home-btns__item">
+                      </li> -->
+                      <li class="home-btns__item" v-if="portfolioList != null && portfolioList.length != 0">
                         <button @click="goToPage('/portfolio')"
                           class="btn-reset btn btn--classic home-btns__btn fz-14 fw-400 lh-140 color-dark ff-raleway"
                         >
@@ -149,7 +149,7 @@
                           <span>Портфолио</span>
                         </button>
                       </li>
-                      <li class="home-btns__item">
+                      <li class="home-btns__item" v-if="card.id_company_info">
                         <button @click="goToPage('/company')"
                           class="btn-reset btn btn--classic home-btns__btn fz-14 fw-400 lh-140 color-dark ff-raleway"
                         >
@@ -184,14 +184,15 @@
 </template>
   
 <script>
-
 export default {
   name: "card-appearance-classic-home",
   props: {
     card: Object,
     socials: Object,
+    portfolioList: Array,
   },
   methods: {
+
     goToPage(link) {
       this.$router.push("/" + this.$route.params.cardLink + link);
     },
@@ -199,5 +200,3 @@ export default {
 };
 </script>
   
-  <style scoped>
-</style>

@@ -53,7 +53,7 @@
                       class="list-reset home-content__list home-content__list--row-gap-15 bg-light"
                     >
                       <li
-                        v-if="company.phone"
+                        v-if="company.phone != 'null' && company.phone.length > 0"
                         class="home-content__item home-content__item--padding-bottom-5 home-content__item--dark-border-bottom"
                       >
                         <a
@@ -66,7 +66,7 @@
                         >
                       </li>
                       <li
-                        v-if="company.email"
+                        v-if="company.email != 'null' && company.email.length > 0"
                         class="home-content__item home-content__item--padding-bottom-5 home-content__item--dark-border-bottom"
                       >
                         <a
@@ -79,7 +79,7 @@
                         >
                       </li>
                       <li
-                        v-if="company.foundation"
+                        v-if="company.foundation != 'null' && company.foundation.length > 0"
                         class="home-content__item home-content__item--padding-bottom-5 home-content__item--dark-border-bottom"
                       >
                         <div
@@ -92,7 +92,7 @@
                         </div>
                       </li>
                       <li
-                        v-if="company.address"
+                        v-if="company.address != 'null' && company.address.length > 0"
                         class="home-content__item home-content__item--padding-bottom-5 home-content__item--dark-border-bottom"
                       >
                         <div
