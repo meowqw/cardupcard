@@ -1,13 +1,133 @@
 <template>
-  <cardAppearanceClassicCompany :socials="socials" :company="company"></cardAppearanceClassicCompany>
+  <body :class="'page__body '+ bg">
+    <div class="site-container">
+      <main class="main">
+        <section :class="'home home-'+classStyle">
+          <div class="home-container home-container--company container">
+            <div class="home__top home__top--company" data-aos="zoom-in">
+              <div class="home__left home__left--company">
+                <div class="home__img home-img home-img--logo">
+                  <img
+                    loading="lazy"
+                    :src="company.logo_img"
+                    class="image br-10"
+                    width="@img-widht"
+                    height="100"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <div class="home__right home__right--company">
+                <div class="home__content home-content">
+                  <div class="home-content__top home-content__top--no-logo">
+                    <div class="home-content__top-left">
+                      <h1 class="home-content__title home-title">
+                        {{ company.name }}
+                      </h1>
+                      <p class="home-content__descr home-descr">
+                        {{ company.activity }}
+                      </p>
+                    </div>
+                    <div class="home-content__top-right">
+                      <div class="home-content__logo" v-if="card.logo_img">
+                        <img
+                          loading="lazy"
+                          :src="card.logo_img"
+                          class="image"
+                          width="130"
+                          height="30"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <ul class="list-reset home-content__list">
+                    <li class="home-content__item" v-if="company.phone">
+                      <a
+                        :href="'tel:'+company.phone"
+                        class="home-content__link item-link item-link--tel"
+                      >
+                        <i class="fa-solid fa-mobile"></i>
+                        <span class="item-link__span">{{company.phone}}</span>
+                      </a>
+                    </li>
+                    <li class="home-content__item" v-if="company.email">
+                      <a
+                        :href="'mailto:'+company.email"
+                        class="home-content__link item-link item-link--mail"
+                      >
+                        <i class="fa-solid fa-envelope"></i>
+                        <span class="item-link__span">{{company.email}}</span>
+                      </a>
+                    </li>
+                    <li class="home-content__item" v-if="company.company_site">
+                      <a
+                        :href="company.company_site"
+                        class="home-content__link item-link item-link--site-link"
+                      >
+                        <i class="fa-solid fa-link"></i>
+                        <span class="item-link__span">{{company.company_site}}</span>
+                      </a>
+                    </li>
+                    <li class="home-content__item" v-if="company.foundation">
+                      <div class="home-content__link item-link item-link--date">
+                        <i class="fa-solid fa-calendar"></i>
+                        <span class="item-link__span">{{company.foundation}}</span>
+                      </div>
+                    </li>
+                    <li class="home-content__item" v-if="company.address">
+                      <div
+                        class="home-content__link item-link item-link--location"
+                      >
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span class="item-link__span">{{company.address}}</span>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <ul class="list-reset home-content__social-list social">
+                  <!-- tg -->
+                  <li class="social__item social-item" v-for="(socialValue, social) in socials" :key="social">
+                      <a style="cursor: pointer;" @click="goToSocial(socialValue)" class="social__link social-link"
+                        ><i :class="'fa-brands fa-'+social"></i
+                      ></a>
+                    </li>
+                </ul>
+              </div>
+              <div class="home__btns home-btns">
+                <ul class="list-reset home-btns__list">
+                  <li class="home-btns__item">
+                    <button
+                      class="btn-reset btn home-btns__btn"
+                      @click="goToPage('')"
+                    >
+                      <i class="fa-solid fa-arrow-left"></i>
+                      <span>Назад</span>
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="home__bottom home-bottom">
+              <ul class="list-reset home-bottom__list">
+                <li class="home-bottom__item">
+                  <button class="btn-reset btn home-bottom__btn">
+                    <!-- <i class="fa-solid fa-download"></i> -->
+                    <span>Предложить сотрудничество</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
 </template>
 
 <script>
 import { mapActions, mapGetters } from "vuex";
 import { API_DOMAIN } from "/config.js";
-
-import cardAppearanceClassicCompany from "./appearance/classic/card-appearance-classic-company.vue";
-
 
 export default {
   name: "card-company",
@@ -16,11 +136,12 @@ export default {
       API_DOMAIN: API_DOMAIN,
       company: [],
       socials: {},
+      card: [],
+      bg: '',
+      classStyle: ''
     };
   },
-  components: {
-    cardAppearanceClassicCompany,
-  },
+  components: {},
   methods: {
     ...mapActions(["GET_CARD_FROM_API"]),
 
@@ -29,32 +150,35 @@ export default {
       if (socials) {
         for (let social in socials) {
           if (socials[social]) {
-            this.socials[social] = socials[social]
+            this.socials[social] = socials[social];
           }
         }
         delete this.socials.date_create;
         delete this.socials.date_update;
         delete this.socials.id;
-
       }
     },
     goToPage(link) {
-      this.$router.push('/'+ this.$route.params.cardLink + link);
-    }
+      this.$router.push("/" + this.$route.params.cardLink + link);
+    },
   },
   computed: {
     ...mapGetters(["CARD"]),
   },
   created() {
-
     // подружаем информациб о карточке
     this.GET_CARD_FROM_API(this.$route.params.cardLink).then(() => {
-      
       // получаем ифнормацию о комании
       this.company = this.CARD[0].id_company_info;
 
+      this.card = this.CARD[0];
+
+      if (this.card.id_appearance.name == 'flup') {
+        this.bg = 'bg-alto'
+      }
+      this.classStyle = this.card.id_appearance.name;
+
       this.setSocials(this.company.id_social);
-      
     });
   },
 };
