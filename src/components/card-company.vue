@@ -1,15 +1,15 @@
 <template>
-  <body :class="'page__body '+ bg">
+  <body :class="'page__body ' + bg">
     <div class="site-container">
       <main class="main">
-        <section :class="'home home-'+classStyle">
+        <section :class="'home home-' + classStyle">
           <div class="home-container home-container--company container">
             <div class="home__top home__top--company" data-aos="zoom-in">
               <div class="home__left home__left--company">
                 <div class="home__img home-img home-img--logo">
                   <img
                     loading="lazy"
-                    :src="company.logo_img"
+                    :src="COMPANY.logo_img"
                     class="image br-10"
                     width="@img-widht"
                     height="100"
@@ -22,17 +22,17 @@
                   <div class="home-content__top home-content__top--no-logo">
                     <div class="home-content__top-left">
                       <h1 class="home-content__title home-title">
-                        {{ company.name }}
+                        {{ COMPANY.name }}
                       </h1>
                       <p class="home-content__descr home-descr">
-                        {{ company.activity }}
+                        {{ COMPANY.activity }}
                       </p>
                     </div>
                     <div class="home-content__top-right">
-                      <div class="home-content__logo" v-if="card.logo_img">
+                      <div class="home-content__logo" v-if="CARD[0].logo_img">
                         <img
                           loading="lazy"
-                          :src="card.logo_img"
+                          :src="CARD[0].logo_img"
                           class="image"
                           width="130"
                           height="30"
@@ -42,56 +42,69 @@
                     </div>
                   </div>
                   <ul class="list-reset home-content__list">
-                    <li class="home-content__item" v-if="company.phone">
+                    <li class="home-content__item" v-if="COMPANY.phone">
                       <a
-                        :href="'tel:'+company.phone"
+                        :href="'tel:' + COMPANY.phone"
                         class="home-content__link item-link item-link--tel"
                       >
                         <i class="fa-solid fa-mobile"></i>
-                        <span class="item-link__span">{{company.phone}}</span>
+                        <span class="item-link__span">{{ COMPANY.phone }}</span>
                       </a>
                     </li>
-                    <li class="home-content__item" v-if="company.email">
+                    <li class="home-content__item" v-if="COMPANY.email">
                       <a
-                        :href="'mailto:'+company.email"
+                        :href="'mailto:' + COMPANY.email"
                         class="home-content__link item-link item-link--mail"
                       >
                         <i class="fa-solid fa-envelope"></i>
-                        <span class="item-link__span">{{company.email}}</span>
+                        <span class="item-link__span">{{ COMPANY.email }}</span>
                       </a>
                     </li>
-                    <li class="home-content__item" v-if="company.company_site">
+                    <li class="home-content__item" v-if="COMPANY.company_site">
                       <a
-                        :href="company.company_site"
+                        :href="COMPANY.company_site"
                         class="home-content__link item-link item-link--site-link"
                       >
                         <i class="fa-solid fa-link"></i>
-                        <span class="item-link__span">{{company.company_site}}</span>
+                        <span class="item-link__span">{{
+                          COMPANY.company_site
+                        }}</span>
                       </a>
                     </li>
-                    <li class="home-content__item" v-if="company.foundation">
+                    <li class="home-content__item" v-if="COMPANY.foundation">
                       <div class="home-content__link item-link item-link--date">
                         <i class="fa-solid fa-calendar"></i>
-                        <span class="item-link__span">{{company.foundation}}</span>
+                        <span class="item-link__span">{{
+                          COMPANY.foundation
+                        }}</span>
                       </div>
                     </li>
-                    <li class="home-content__item" v-if="company.address">
+                    <li class="home-content__item" v-if="COMPANY.address">
                       <div
                         class="home-content__link item-link item-link--location"
                       >
                         <i class="fa-solid fa-location-dot"></i>
-                        <span class="item-link__span">{{company.address}}</span>
+                        <span class="item-link__span">{{
+                          COMPANY.address
+                        }}</span>
                       </div>
                     </li>
                   </ul>
                 </div>
-                <ul class="list-reset home-content__social-list social">
+                <ul class="list-reset home-content__social-list social" v-if="Object.keys(socials).length" >
                   <!-- tg -->
-                  <li class="social__item social-item" v-for="(socialValue, social) in socials" :key="social">
-                      <a style="cursor: pointer;" @click="goToSocial(socialValue)" class="social__link social-link"
-                        ><i :class="'fa-brands fa-'+social"></i
-                      ></a>
-                    </li>
+                  <li
+                    class="social__item social-item"
+                    v-for="(socialValue, social) in socials"
+                    :key="social"
+                  >
+                    <a
+                      style="cursor: pointer"
+                      @click="goToSocial(socialValue)"
+                      class="social__link social-link"
+                      ><i :class="'fa-brands fa-' + social"></i
+                    ></a>
+                  </li>
                 </ul>
               </div>
               <div class="home__btns home-btns">
@@ -126,7 +139,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 import { API_DOMAIN } from "/config.js";
 
 export default {
@@ -134,23 +147,18 @@ export default {
   data() {
     return {
       API_DOMAIN: API_DOMAIN,
-      company: [],
       socials: {},
-      card: [],
-      bg: '',
-      classStyle: ''
+      bg: "",
+      classStyle: "",
     };
   },
-  components: {},
   methods: {
-    ...mapActions(["GET_CARD_FROM_API"]),
-
     // добавляем социалки которые не none
-    setSocials(socials) {
-      if (socials) {
-        for (let social in socials) {
-          if (socials[social]) {
-            this.socials[social] = socials[social];
+    setSocials() {
+      if (this.CARD[0].id_social) {
+        for (let social in this.CARD[0].id_social) {
+          if (this.CARD[0].id_social[social]) {
+            this.socials[social] = this.CARD[0].id_social[social];
           }
         }
         delete this.socials.date_create;
@@ -158,28 +166,26 @@ export default {
         delete this.socials.id;
       }
     },
+
+    setStyles() {
+      // фдап стиль имеет исключении в бг потому добавлено условие
+      if (this.CARD[0].id_appearance.name == "flup") {
+        this.bg = "bg-alto";
+      }
+      // берем стиль карточки
+      this.classStyle = this.CARD[0].id_appearance.name;
+    },
+
     goToPage(link) {
       this.$router.push("/" + this.$route.params.cardLink + link);
     },
   },
   computed: {
-    ...mapGetters(["CARD"]),
+    ...mapGetters(["CARD", "COMPANY"]),
   },
   created() {
-    // подружаем информациб о карточке
-    this.GET_CARD_FROM_API(this.$route.params.cardLink).then(() => {
-      // получаем ифнормацию о комании
-      this.company = this.CARD[0].id_company_info;
-
-      this.card = this.CARD[0];
-
-      if (this.card.id_appearance.name == 'flup') {
-        this.bg = 'bg-alto'
-      }
-      this.classStyle = this.card.id_appearance.name;
-
-      this.setSocials(this.company.id_social);
-    });
+    this.setSocials(this.COMPANY.id_social);
+    this.setStyles(this.CARD[0]);
   },
 };
 </script>

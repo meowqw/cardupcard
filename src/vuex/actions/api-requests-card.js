@@ -12,7 +12,6 @@ export default {
                 return card;
             })
             .catch((error) => {
-                console.log(error);
                 return error;
             });
     },

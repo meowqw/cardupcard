@@ -12,7 +12,6 @@ export default {
                 return portfolio;
             })
             .catch((error) => {
-                console.log(error);
                 return error;
             });
     },
