@@ -5,7 +5,7 @@
         <section :class="'portfolio portfolio-'+classStyle">
           <div class="portfolio__container container">
             <div class="portfolio__content" data-aos="zoom-in">
-              <h1 class="portfolio__title">Портфолио {{ CARD[0].name }}</h1>
+              <h1 class="portfolio__title">Портфолио</h1>
               <ul class="list-reset portfolio__list">
                 <!-- item -->
                 <li v-for="portfolio in PORTFOLIO" :key="portfolio.id" class="portfolio__item portfolio-item">

@@ -3,7 +3,12 @@
     <body class="page__body">
       <div class="site-container">
         <main class="main">
-          <h1>LOADING</h1>
+          <div class="main__container container loader__container">
+            <div class="loader__block">
+              <div class="loader">Loading…</div>
+            </div>
+            <h1 class="title-h2 loader__title">Идет загрузка</h1>
+          </div>
         </main>
       </div>
     </body>
@@ -43,7 +48,7 @@
                     <div class="home-content__top">
                       <div class="home-content__top-left">
                         <h1 class="home-content__title home-title">
-                          {{ CARD[0].name }}
+                          {{ CARD[0].name }} {{ CARD[0].surname }}
                         </h1>
                         <p class="home-content__descr home-descr">
                           {{ CARD[0].spec }}
@@ -106,7 +111,9 @@
                           class="home-content__link item-link item-link--date"
                         >
                           <i class="fa-solid fa-calendar"></i>
-                          <span class="item-link__span">{{ formattedDate(CARD[0].dob) }}</span>
+                          <span class="item-link__span">{{
+                            formattedDate(CARD[0].dob)
+                          }}</span>
                         </div>
                       </li>
                       <li class="home-content__item" v-if="CARD[0].address">
@@ -121,7 +128,10 @@
                       </li>
                     </ul>
                   </div>
-                  <ul class="list-reset home-content__social-list social" v-if="Object.keys(socials).length">
+                  <ul
+                    class="list-reset home-content__social-list social"
+                    v-if="Object.keys(socials).length"
+                  >
                     <!-- tg -->
                     <li
                       class="social__item social-item"
@@ -193,7 +203,7 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import { API_DOMAIN } from "/config.js";
-import moment from 'moment';
+import moment from "moment";
 
 export default {
   name: "card-home",
@@ -215,7 +225,7 @@ export default {
 
     formattedDate(date) {
       // Получить дату и отформатировать ее
-      return moment(date).format('DD.MM.YYYY');
+      return moment(date).format("DD.MM.YYYY");
     },
 
     // добавляем социалки которые не none
@@ -255,7 +265,6 @@ export default {
   //   this.SET_COMPANY(1);
   // },
   created() {
-    
     // подружаем информациб о карточке
     if (!this.CARD) {
       this.GET_CARD_FROM_API(this.$route.params.cardLink).then(() => {

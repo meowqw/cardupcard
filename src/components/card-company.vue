@@ -5,18 +5,28 @@
         <section :class="'home home-' + classStyle">
           <div class="home-container home-container--company container">
             <div class="home__top home__top--company" data-aos="zoom-in">
-              <div class="home__left home__left--company">
-                <div class="home__img home-img home-img--logo">
-                  <img
-                    loading="lazy"
-                    :src="COMPANY.logo_img"
-                    class="image br-10"
-                    width="@img-widht"
-                    height="100"
-                    alt=""
-                  />
+              <div class="home__left">
+                  <div class="home__img home-img">
+                    <picture>
+                      <source
+                        :srcset="COMPANY.logo_img"
+                        type="image/avif"
+                      />
+                      <source
+                        :srcset="COMPANY.logo_img"
+                        type="image/webp"
+                      />
+                      <img
+                        loading="lazy"
+                        :src="COMPANY.logo_img"
+                        class="image"
+                        width="385"
+                        height="385"
+                        alt=""
+                      />
+                    </picture>
+                  </div>
                 </div>
-              </div>
               <div class="home__right home__right--company">
                 <div class="home__content home-content">
                   <div class="home-content__top home-content__top--no-logo">
