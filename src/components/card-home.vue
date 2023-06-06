@@ -185,7 +185,7 @@
               <div :class="'home__bottom home-bottom ' + bg">
                 <ul class="list-reset home-bottom__list">
                   <li class="home-bottom__item">
-                    <button class="btn-reset btn home-bottom__btn">
+                    <button class="btn-reset btn home-bottom__btn" @click="goOffer()">
                       <!-- <i class="fa-solid fa-download"></i> -->
                       <span>Предложить сотрудничество</span>
                     </button>
@@ -226,6 +226,10 @@ export default {
     formattedDate(date) {
       // Получить дату и отформатировать ее
       return moment(date).format("DD.MM.YYYY");
+    },
+
+    goOffer() {
+      document.location.href = `tel:${this.CARD[0].phone}`;
     },
 
     // добавляем социалки которые не none
