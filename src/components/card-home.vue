@@ -185,7 +185,10 @@
               <div :class="'home__bottom home-bottom ' + bg">
                 <ul class="list-reset home-bottom__list">
                   <li class="home-bottom__item">
-                    <button class="btn-reset btn home-bottom__btn" @click="goOffer()">
+                    <button
+                      class="btn-reset btn home-bottom__btn"
+                      @click="isPopupOpen = true"
+                    >
                       <!-- <i class="fa-solid fa-download"></i> -->
                       <span>Предложить сотрудничество</span>
                     </button>
@@ -198,12 +201,15 @@
       </div>
     </body>
   </template>
+
+  <card-popup :is-open="isPopupOpen" @close="isPopupOpen = false" />
 </template>
 
 <script>
 import { mapActions, mapGetters } from "vuex";
 import { API_DOMAIN } from "/config.js";
 import moment from "moment";
+import cardPopup from "@/components/card-popup.vue";
 
 export default {
   name: "card-home",
@@ -214,7 +220,11 @@ export default {
       bg: "",
       classStyle: "",
       isLoad: false,
+      isPopupOpen: false,
     };
+  },
+  components: {
+    cardPopup,
   },
   methods: {
     ...mapActions([
@@ -301,5 +311,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

@@ -949,6 +949,7 @@ a {
   display: -ms-flexbox;
   display: flex;
   gap: 15px;
+  width: 100%;
 }
 .home-content__top-left {
   display: -webkit-box;
@@ -1070,8 +1071,12 @@ a {
 }
 
 .home-descr {
+  overflow: hidden;
   margin: 0;
+  width: 100%;
   font-size: 24px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   letter-spacing: 0.02em;
   color: var(--gray-color);
 }
@@ -1373,6 +1378,7 @@ a {
   }
 }
 .home-classic .home-img {
+  overflow: hidden;
   position: relative;
   display: block;
   -webkit-box-align: start;
@@ -1382,8 +1388,12 @@ a {
   -ms-flex-pack: center;
   justify-content: center;
   border-radius: 100%;
-  width: auto;
+  width: 100%;
   height: auto;
+  max-width: 250px;
+}
+.home-classic .home-img picture {
+  width: 100%;
 }
 @media (max-width: 1024px) {
   .home-classic .home-img {
@@ -1399,6 +1409,7 @@ a {
   border-radius: 100%;
   width: 100%;
   max-width: 250px;
+  max-height: 250px;
 }
 @media (max-width: 1024px) {
   .home-classic .home-img img {
@@ -2380,6 +2391,7 @@ a {
 }
 .home-medicine .home-img {
   position: relative;
+  overflow: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2392,13 +2404,22 @@ a {
   border-radius: 100%;
   width: 100%;
   height: auto;
+  max-width: 390px;
+  max-height: 390px;
   -webkit-box-shadow: var(--shadow-med);
   box-shadow: var(--shadow-med);
+}
+.home-medicine .home-img picture {
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 .home-medicine .home-img img {
   display: block;
   border-radius: 100%;
   width: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 @media (max-width: 1024px) {
   .home-medicine .home-img img {
