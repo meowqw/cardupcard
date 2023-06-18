@@ -185,7 +185,7 @@
                   <li class="home-bottom__item">
                     <button
                       class="btn-reset btn home-bottom__btn"
-                      @click="isPopupOpen = true"
+                      @click="goOffer"
                     >
                       <!-- <i class="fa-solid fa-download"></i> -->
                       <span>Предложить сотрудничество</span>
