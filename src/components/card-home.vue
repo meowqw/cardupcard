@@ -111,9 +111,7 @@
                           class="home-content__link item-link item-link--date"
                         >
                           <i class="fa-solid fa-calendar"></i>
-                          <span class="item-link__span">{{
-                            formattedDate(CARD[0].dob)
-                          }}</span>
+                          <span class="item-link__span">{{ CARD[0].dob }}</span>
                         </div>
                       </li>
                       <li class="home-content__item" v-if="CARD[0].address">
@@ -202,7 +200,11 @@
     </body>
   </template>
 
-  <card-popup :is-open="isPopupOpen" @close="isPopupOpen = false" />
+  <card-popup
+    :is-open="isPopupOpen"
+    :currentUrl="currentUrl"
+    @close="isPopupOpen = false"
+  />
 </template>
 
 <script>
@@ -221,6 +223,7 @@ export default {
       classStyle: "",
       isLoad: false,
       isPopupOpen: false,
+      currentUrl: window.location.href,
     };
   },
   components: {
