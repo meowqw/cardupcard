@@ -171,18 +171,18 @@
                       <span>Сеансы</span>
                     </button>
                   </li> -->
-                          <li
-                            class="home-btns__item"
-                            v-if="PORTFOLIO != null && PORTFOLIO.length != 0"
-                          >
-                            <button
-                              @click="goToPage('/portfolio')"
-                              class="btn-reset btn home-btns__btn"
-                            >
-                              <i class="fa-solid fa-briefcase"></i>
-                              <span>Портфолио</span>
-                            </button>
-                          </li>
+<!--                          <li-->
+<!--                            class="home-btns__item"-->
+<!--                            v-if="PORTFOLIO != null && PORTFOLIO.length != 0"-->
+<!--                          >-->
+<!--                            <button-->
+<!--                              @click="goToPage('/portfolio')"-->
+<!--                              class="btn-reset btn home-btns__btn"-->
+<!--                            >-->
+<!--                              <i class="fa-solid fa-briefcase"></i>-->
+<!--                              <span>Портфолио</span>-->
+<!--                            </button>-->
+<!--                          </li>-->
                           <li
                             class="home-btns__item"
                             v-if="CARD[0].id_company_info"
@@ -219,9 +219,8 @@
         </template>
       </div>
     </swiper-slide>
-    <swiper-slide>
+    <swiper-slide v-if="PORTFOLIO != null && PORTFOLIO.length != 0">
       <div>
-        <template>
           <body :class="'page__body ' + bg">
             <div class="site-container">
               <main class="main">
@@ -270,25 +269,24 @@
                         </li>
                       </ul>
                     </div>
-                    <div class="portfolio__bottom portfolio-bottom">
-                      <ul class="list-reset portfolio-bottom__list">
-                        <li class="portfolio-bottom__item">
-                          <button
-                            class="btn-reset btn home-btns__btn"
-                            @click="goToPage('')"
-                          >
-                            <i class="fa-solid fa-arrow-left"></i>
-                            <span>Назад</span>
-                          </button>
-                        </li>
-                      </ul>
-                    </div>
+<!--                    <div class="portfolio__bottom portfolio-bottom">-->
+<!--                      <ul class="list-reset portfolio-bottom__list">-->
+<!--                        <li class="portfolio-bottom__item">-->
+<!--                          <button-->
+<!--                            class="btn-reset btn home-btns__btn"-->
+<!--                            @click="goToPage('')"-->
+<!--                          >-->
+<!--                            <i class="fa-solid fa-arrow-left"></i>-->
+<!--                            <span>Назад</span>-->
+<!--                          </button>-->
+<!--                        </li>-->
+<!--                      </ul>-->
+<!--                    </div>-->
                   </div>
                 </section>
               </main>
             </div>
           </body>
-        </template>
       </div>
     </swiper-slide>
   </swiper>
@@ -409,11 +407,9 @@ export default {
     }
   },
   setup() {
-    const onSwiper = (swiper) => {
-      console.log(swiper);
+    const onSwiper = () => {
     };
     const onSlideChange = () => {
-      console.log("slide change");
     };
     return {
       onSwiper,
