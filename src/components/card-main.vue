@@ -1,5 +1,5 @@
 <template>
-  <swiper
+  <!-- <swiper
     :slides-per-view="1"
     :space-between="50"
     @swiper="onSwiper"
@@ -11,22 +11,20 @@
     <swiper-slide>
       <div><card-portfolio /></div>
     </swiper-slide>
-  </swiper>
+  </swiper> -->
+
+  <router-view></router-view>
 </template>
 
 <script>
-import { Swiper, SwiperSlide } from "swiper/vue";
-import "swiper/css";
-import cardHome from "./card-home.vue";
-import cardPortfolio from "./card-portfolio.vue";
+// import { Swiper, SwiperSlide } from "swiper/vue";
+// import "swiper/css";
 
 export default {
   name: "card-main",
   components: {
-    Swiper,
-    SwiperSlide,
-    cardHome,
-    cardPortfolio,
+    // Swiper,
+    // SwiperSlide,
   },
   setup() {
     const onSwiper = (swiper) => {
