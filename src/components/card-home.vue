@@ -227,7 +227,7 @@
                 <section :class="'portfolio portfolio-' + classStyle">
                   <div class="portfolio__container container">
                     <div class="portfolio__content" data-aos="zoom-in">
-                      <h1 class="portfolio__title">Портфолио</h1>
+                      <h1 class="portfolio__title">{{CARD[0].subcard}}</h1>
                       <ul class="list-reset portfolio__list">
                         <!-- item -->
                         <li
@@ -260,7 +260,7 @@
                               {{ portfolio.name }}
                             </h2>
                             <div class="portfolio-item__date">
-                              {{ formattedDate(portfolio.date) }}
+                              {{ portfolio.date }}
                             </div>
                             <p class="portfolio-item__descr">
                               {{ portfolio.description }}
@@ -290,19 +290,11 @@
       </div>
     </swiper-slide>
   </swiper>
-
-  <card-popup
-    :is-open="isPopupOpen"
-    :currentUrl="currentUrl"
-    @close="isPopupOpen = false"
-  />
 </template>
 
 <script>
 import { mapActions, mapGetters } from "vuex";
 import { API_DOMAIN } from "/config.js";
-import moment from "moment";
-import cardPopup from "@/components/card-popup.vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 
@@ -315,12 +307,9 @@ export default {
       bg: "",
       classStyle: "",
       isLoad: false,
-      isPopupOpen: false,
-      currentUrl: window.location.href,
     };
   },
   components: {
-    cardPopup,
     Swiper,
     SwiperSlide,
   },
@@ -330,12 +319,6 @@ export default {
       "GET_PORTFOLIO_FROM_API",
       "SET_COMPANY",
     ]),
-
-    formattedDate(date) {
-      // Получить дату и отформатировать ее
-      return moment(date).format("DD.MM.YYYY");
-    },
-
     goOffer() {
       document.location.href = `tel:${this.CARD[0].phone}`;
     },
