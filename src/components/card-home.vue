@@ -1,9 +1,11 @@
 <template>
   <swiper
+    :modules="modules"
     :slides-per-view="1"
     :space-between="50"
     @swiper="onSwiper"
     @slideChange="onSlideChange"
+    :pagination="{ clickable: true }"
   >
     <swiper-slide>
       <div>
@@ -171,18 +173,18 @@
                       <span>Сеансы</span>
                     </button>
                   </li> -->
-<!--                          <li-->
-<!--                            class="home-btns__item"-->
-<!--                            v-if="PORTFOLIO != null && PORTFOLIO.length != 0"-->
-<!--                          >-->
-<!--                            <button-->
-<!--                              @click="goToPage('/portfolio')"-->
-<!--                              class="btn-reset btn home-btns__btn"-->
-<!--                            >-->
-<!--                              <i class="fa-solid fa-briefcase"></i>-->
-<!--                              <span>Портфолио</span>-->
-<!--                            </button>-->
-<!--                          </li>-->
+                          <!--                          <li-->
+                          <!--                            class="home-btns__item"-->
+                          <!--                            v-if="PORTFOLIO != null && PORTFOLIO.length != 0"-->
+                          <!--                          >-->
+                          <!--                            <button-->
+                          <!--                              @click="goToPage('/portfolio')"-->
+                          <!--                              class="btn-reset btn home-btns__btn"-->
+                          <!--                            >-->
+                          <!--                              <i class="fa-solid fa-briefcase"></i>-->
+                          <!--                              <span>Портфолио</span>-->
+                          <!--                            </button>-->
+                          <!--                          </li>-->
                           <li
                             class="home-btns__item"
                             v-if="CARD[0].id_company_info"
@@ -221,72 +223,66 @@
     </swiper-slide>
     <swiper-slide v-if="PORTFOLIO != null && PORTFOLIO.length != 0">
       <div>
-          <body :class="'page__body ' + bg">
-            <div class="site-container">
-              <main class="main">
-                <section :class="'portfolio portfolio-' + classStyle">
-                  <div class="portfolio__container container">
-                    <div class="portfolio__content" data-aos="zoom-in">
-                      <h1 class="portfolio__title">{{CARD[0].subcard}}</h1>
-                      <ul class="list-reset portfolio__list">
-                        <!-- item -->
-                        <li
-                          v-for="portfolio in PORTFOLIO"
-                          :key="portfolio.id"
-                          class="portfolio__item portfolio-item"
-                        >
-                          <div class="portfolio-item__img">
-                            <picture>
-                              <source
-                                :srcset="portfolio.img"
-                                type="image/avif"
-                              />
-                              <source
-                                :srcset="portfolio.img"
-                                type="image/webp"
-                              />
-                              <img
-                                loading="lazy"
-                                :src="portfolio.img"
-                                class="image"
-                                width="290"
-                                height="290"
-                                alt=""
-                              />
-                            </picture>
+        <body :class="'page__body ' + bg">
+          <div class="site-container">
+            <main class="main">
+              <section :class="'portfolio portfolio-' + classStyle">
+                <div class="portfolio__container container">
+                  <div class="portfolio__content" data-aos="zoom-in">
+                    <h1 class="portfolio__title">{{ CARD[0].subcard }}</h1>
+                    <ul class="list-reset portfolio__list">
+                      <!-- item -->
+                      <li
+                        v-for="portfolio in PORTFOLIO"
+                        :key="portfolio.id"
+                        class="portfolio__item portfolio-item"
+                      >
+                        <div class="portfolio-item__img">
+                          <picture>
+                            <source :srcset="portfolio.img" type="image/avif" />
+                            <source :srcset="portfolio.img" type="image/webp" />
+                            <img
+                              loading="lazy"
+                              :src="portfolio.img"
+                              class="image"
+                              width="290"
+                              height="290"
+                              alt=""
+                            />
+                          </picture>
+                        </div>
+                        <div class="portfolio-item__info">
+                          <h2 class="portfolio-item__title">
+                            {{ portfolio.name }}
+                          </h2>
+                          <div class="portfolio-item__date">
+                            {{ portfolio.date }}
                           </div>
-                          <div class="portfolio-item__info">
-                            <h2 class="portfolio-item__title">
-                              {{ portfolio.name }}
-                            </h2>
-                            <div class="portfolio-item__date">
-                              {{ portfolio.date }}
-                            </div>
-                            <p class="portfolio-item__descr">
-                              {{ portfolio.description }}
-                            </p>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-<!--                    <div class="portfolio__bottom portfolio-bottom">-->
-<!--                      <ul class="list-reset portfolio-bottom__list">-->
-<!--                        <li class="portfolio-bottom__item">-->
-<!--                          <button-->
-<!--                            class="btn-reset btn home-btns__btn"-->
-<!--                            @click="goToPage('')"-->
-<!--                          >-->
-<!--                            <i class="fa-solid fa-arrow-left"></i>-->
-<!--                            <span>Назад</span>-->
-<!--                          </button>-->
-<!--                        </li>-->
-<!--                      </ul>-->
-<!--                    </div>-->
+                          <p class="portfolio-item__descr">
+                            {{ portfolio.description }}
+                          </p>
+                        </div>
+                      </li>
+                    </ul>
                   </div>
-                </section>
-              </main>
-            </div>
-          </body>
+                  <!--                    <div class="portfolio__bottom portfolio-bottom">-->
+                  <!--                      <ul class="list-reset portfolio-bottom__list">-->
+                  <!--                        <li class="portfolio-bottom__item">-->
+                  <!--                          <button-->
+                  <!--                            class="btn-reset btn home-btns__btn"-->
+                  <!--                            @click="goToPage('')"-->
+                  <!--                          >-->
+                  <!--                            <i class="fa-solid fa-arrow-left"></i>-->
+                  <!--                            <span>Назад</span>-->
+                  <!--                          </button>-->
+                  <!--                        </li>-->
+                  <!--                      </ul>-->
+                  <!--                    </div>-->
+                </div>
+              </section>
+            </main>
+          </div>
+        </body>
       </div>
     </swiper-slide>
   </swiper>
@@ -296,7 +292,10 @@
 import { mapActions, mapGetters } from "vuex";
 import { API_DOMAIN } from "/config.js";
 import { Swiper, SwiperSlide } from "swiper/vue";
+import { Pagination, Navigation } from "swiper";
 import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 export default {
   name: "card-home",
@@ -356,9 +355,6 @@ export default {
   computed: {
     ...mapGetters(["CARD", "PORTFOLIO", "COMPANY"]),
   },
-  // mounted() {
-  //   this.SET_COMPANY(1);
-  // },
   created() {
     // подружаем информациб о карточке
     if (!this.CARD) {
@@ -390,16 +386,23 @@ export default {
     }
   },
   setup() {
-    const onSwiper = () => {
-    };
-    const onSlideChange = () => {
-    };
+    const onSwiper = () => {};
+    const onSlideChange = () => {};
     return {
       onSwiper,
       onSlideChange,
+      modules: [Navigation, Pagination],
     };
   },
 };
 </script>
 
-<style scoped></style>
+<style>
+.swiper-pagination-bullet-active {
+  background: #1e1e1e;
+}
+
+.swiper-pagination {
+  position: static;
+}
+</style>
