@@ -6,7 +6,7 @@
     :auto-height="true"
     @swiper="onSwiper"
     @slideChange="onSlideChange"
-    :pagination="{ clickable: true }"
+    :pagination="{ clickable: true, type: 'progressbar' }"
   >
     <swiper-slide>
       <div>
@@ -404,7 +404,19 @@ export default {
 }
 
 .swiper-pagination {
-  position: static;
+  /* position: static; */
+}
+
+.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+  background-color: #ff5c00;
+}
+
+.swiper-horizontal > .swiper-pagination-progressbar,
+.swiper-pagination-progressbar.swiper-pagination-horizontal,
+.swiper-pagination-progressbar.swiper-pagination-vertical.swiper-pagination-progressbar-opposite,
+.swiper-vertical
+  > .swiper-pagination-progressbar.swiper-pagination-progressbar-opposite {
+  height: 6px;
 }
 
 .slide {
