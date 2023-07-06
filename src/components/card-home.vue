@@ -3,6 +3,7 @@
     :modules="modules"
     :slides-per-view="1"
     :space-between="50"
+    :auto-height="true"
     @swiper="onSwiper"
     @slideChange="onSlideChange"
     :pagination="{ clickable: true }"
