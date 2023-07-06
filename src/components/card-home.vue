@@ -406,4 +406,12 @@ export default {
 .swiper-pagination {
   position: static;
 }
+
+.slide {
+  min-height: 600px;
+}
+
+.swiper-autoheight {
+  min-height: 600px;
+}
 </style>
