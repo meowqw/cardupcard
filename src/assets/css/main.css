@@ -1298,6 +1298,7 @@ a {
   -webkit-box-shadow: var(--shadow-med);
   box-shadow: var(--shadow-med);
   row-gap: 20px;
+  overflow: hidden;
 }
 @media (max-width: 1024px) {
   .home-classic .home__top {
