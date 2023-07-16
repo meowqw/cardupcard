@@ -420,7 +420,7 @@ export default {
 }
 
 .slide {
-  /* min-height: 600px; */
+  min-height: 900px;
 }
 
 .swiper-autoheight {
