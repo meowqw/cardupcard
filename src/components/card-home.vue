@@ -419,8 +419,8 @@ export default {
   height: 6px;
 }
 
-.slide {
-  min-height: 900px;
+.swiper-slide {
+  min-height: 650px;
 }
 
 .swiper-autoheight {
