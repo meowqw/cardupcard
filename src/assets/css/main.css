@@ -1252,6 +1252,7 @@ a {
     bottom: 0;
     padding: 10px;
     width: -webkit-fill-available;
+    width: -moz-available;
   }
   .home-bottom .btn {
     width: 100%;
@@ -1498,6 +1499,7 @@ a {
     padding-top: 0;
     padding-bottom: 0;
     width: -webkit-fill-available;
+    width: -moz-available;
     max-width: 768px;
     gap: 35px;
   }
@@ -1848,6 +1850,7 @@ a {
     bottom: 0;
     padding: 10px;
     width: -webkit-fill-available;
+    width: -moz-available;
   }
   .home-classic .home-bottom .btn {
     width: 100%;
@@ -2017,6 +2020,7 @@ a {
     padding-top: 0;
     padding-bottom: 0;
     width: -webkit-fill-available;
+    width: -moz-available;
     max-width: 768px;
     gap: 35px;
   }
@@ -2173,6 +2177,7 @@ a {
   border-top: none;
   padding: 20px;
   width: -webkit-fill-available;
+  width: -moz-available;
   -webkit-box-shadow: var(--shadow-light);
   box-shadow: var(--shadow-light);
   row-gap: 10px;
@@ -2310,6 +2315,7 @@ a {
     bottom: 0;
     padding: 10px;
     width: -webkit-fill-available;
+    width: -moz-available;
   }
   .home-strict .home-bottom .btn {
     width: 100%;
@@ -2747,6 +2753,7 @@ a {
     bottom: 0;
     padding: 10px;
     width: -webkit-fill-available;
+    width: -moz-available;
   }
   .home-medicine .home-bottom .btn {
     width: 100%;
@@ -3091,6 +3098,7 @@ a {
     bottom: 0;
     padding: 10px;
     width: -webkit-fill-available;
+    width: -moz-available;
   }
   .home-flup .home-bottom .btn {
     width: 100%;
@@ -3574,6 +3582,7 @@ a {
     bottom: 0;
     padding: 10px;
     width: -webkit-fill-available;
+    width: -moz-available;
   }
   .home-yellow-blue .home-bottom .btn {
     width: 100%;
@@ -6198,6 +6207,7 @@ a {
     padding-top: 0;
     padding-bottom: 0;
     width: -webkit-fill-available;
+    width: -moz-available;
     max-width: 768px;
     gap: 35px;
   }
@@ -6495,6 +6505,7 @@ a {
     bottom: 0;
     padding: 10px;
     width: -webkit-fill-available;
+    width: -moz-available;
   }
   .home-yellow-blue .home-bottom .btn {
     width: 100%;
@@ -6504,6 +6515,7 @@ a {
   }
   .home-yellow-blue .social {
     width: -webkit-fill-available;
+    width: -moz-available;
   }
 }
 

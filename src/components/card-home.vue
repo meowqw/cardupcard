@@ -424,6 +424,6 @@ export default {
 }
 
 .swiper-autoheight {
-  min-height: auto;
+  /* min-height: auto; */
 }
 </style>
