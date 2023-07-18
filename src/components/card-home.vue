@@ -399,6 +399,11 @@ export default {
 </script>
 
 <style>
+.swiper {
+  /* overflow: hidden; */
+  display: block;
+}
+
 .swiper-pagination-bullet-active {
   background: #1e1e1e;
 }
@@ -429,5 +434,9 @@ export default {
 
 .swiper-autoheight {
   /* min-height: auto; */
+}
+
+.swiper-wrapper {
+  height: 100%;
 }
 </style>
