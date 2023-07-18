@@ -163,29 +163,29 @@
                           </li>
                         </ul>
                       </div>
-                      <div class="home__btns home-btns">
+                      <!-- <div class="home__btns home-btns">
                         <ul class="list-reset home-btns__list">
-                          <!-- <li class="home-btns__item">
-                    <button
-                      class="btn-reset btn home-btns__btn"
-                      onclick="document.location='flup-calendar.html'"
-                    >
-                      <i class="fa-regular fa-calendar-days"></i>
-                      <span>Сеансы</span>
-                    </button>
-                  </li> -->
-                          <!--                          <li-->
-                          <!--                            class="home-btns__item"-->
-                          <!--                            v-if="PORTFOLIO != null && PORTFOLIO.length != 0"-->
-                          <!--                          >-->
-                          <!--                            <button-->
-                          <!--                              @click="goToPage('/portfolio')"-->
-                          <!--                              class="btn-reset btn home-btns__btn"-->
-                          <!--                            >-->
-                          <!--                              <i class="fa-solid fa-briefcase"></i>-->
-                          <!--                              <span>Портфолио</span>-->
-                          <!--                            </button>-->
-                          <!--                          </li>-->
+                          <li class="home-btns__item">
+                            <button
+                              class="btn-reset btn home-btns__btn"
+                              onclick="document.location='flup-calendar.html'"
+                            >
+                              <i class="fa-regular fa-calendar-days"></i>
+                              <span>Сеансы</span>
+                            </button>
+                          </li>
+                          <li
+                            class="home-btns__item"
+                            v-if="PORTFOLIO != null && PORTFOLIO.length != 0"
+                          >
+                            <button
+                              @click="goToPage('/portfolio')"
+                              class="btn-reset btn home-btns__btn"
+                            >
+                              <i class="fa-solid fa-briefcase"></i>
+                              <span>Портфолио</span>
+                            </button>
+                          </li>
                           <li
                             class="home-btns__item"
                             v-if="CARD[0].id_company_info"
@@ -199,7 +199,7 @@
                             </button>
                           </li>
                         </ul>
-                      </div>
+                      </div> -->
                     </div>
                     <div :class="'home__bottom home-bottom ' + bg">
                       <ul class="list-reset home-bottom__list">
@@ -419,13 +419,13 @@ export default {
   height: 6px;
 }
 
-.swiper-slide {
+/* .swiper-slide {
   min-height: 650px;
 
   @media (max-width: 425px) {
     min-height: 800px;
   }
-}
+} */
 
 .swiper-autoheight {
   /* min-height: auto; */
