@@ -421,6 +421,10 @@ export default {
 
 .swiper-slide {
   min-height: 650px;
+
+  @media (max-width: 425px) {
+    min-height: 800px;
+  }
 }
 
 .swiper-autoheight {
