@@ -437,6 +437,18 @@ export default {
 }
 
 .swiper-wrapper {
-  height: 100%;
+  min-height: 650px;
+
+  @media (max-width: 1024px) {
+    min-height: 900px;
+  }
+
+  @media (max-width: 576px) {
+    min-height: 850px;
+  }
+
+  @media (max-width: 425px) {
+    min-height: 750px;
+  }
 }
 </style>
